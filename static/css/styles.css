@@ -1,0 +1,226 @@
+/* Basic reset for the page */
+body, h1, h2, ul, li, form, table {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Ensures that padding and border do not affect width/height */
+}
+
+/* General page styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Sets font family */
+    background-color: #f7f7f7; /* Light gray background for the page */
+    color: #333; /* Default text color */
+    padding: 20px; /* Adds spacing around the body content */
+    line-height: 1.6; /* Increases line height for readability */
+}
+
+h1 {
+    color: #0056b3; /* Blue color for main heading */
+    text-align: center; /* Centers the header */
+    font-size: 2.5rem; /* Font size */
+    margin-bottom: 20px; /* Adds space below the header */
+    letter-spacing: 1px; /* Slight spacing between letters */
+}
+
+h2 {
+    color: #333; /* Dark gray color for subheadings */
+    font-size: 1.75rem; /* Font size */
+    margin-bottom: 15px; /* Adds space below the subheading */
+    font-weight: 600; /* Makes the subheading bold */
+}
+
+/* Styling the notes list */
+ul {
+    list-style-type: none; /* Removes default list styling */
+    padding: 0;
+}
+
+li {
+    background-color: #fff; /* White background for list items */
+    padding: 15px; /* Adds padding inside list items */
+    margin: 8px 0; /* Adds space between list items */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Light shadow for depth */
+    transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+li:hover {
+    background-color: #eef2f7; /* Light blue background on hover */
+    transform: translateY(-2px); /* Raises the list item slightly on hover */
+}
+
+/* Button Styling */
+button {
+    background-color: #0056b3; /* Blue button background */
+    color: white; /* White text color */
+    padding: 12px 24px; /* Adds padding inside the button */
+    font-size: 1rem; /* Sets font size */
+    border: none; /* Removes default border */
+    border-radius: 6px; /* Rounded corners */
+    cursor: pointer; /* Changes cursor to a pointer on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth background and transform on hover */
+}
+
+button:hover {
+    background-color: #004080; /* Darker blue background on hover */
+    transform: translateY(-2px); /* Moves the button up slightly */
+}
+
+button:active {
+    background-color: #003366; /* Even darker blue when button is clicked */
+}
+
+/* Modal Styling */
+.modal {
+    display: none; /* Initially hidden */
+    position: fixed; /* Fixed positioning on screen */
+    z-index: 1000; /* Keeps the modal above other content */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full screen width */
+    height: 100%; /* Full screen height */
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black background */
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    transition: opacity 0.3s ease; /* Smooth transition for visibility */
+}
+
+.modal-content {
+    background-color: #fff; /* White background for the modal content */
+    padding: 30px; /* Adds padding inside the modal */
+    width: 70%; /* Modal takes up 70% of the screen width */
+    max-width: 600px; /* Maximum width for large screens */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
+    position: relative; /* Positions the modal content */
+}
+
+.modal-header {
+    font-size: 2rem; /* Larger font size for the modal header */
+    margin-bottom: 25px; /* Adds space below the header */
+    color: #333; /* Dark text color */
+    font-weight: 700; /* Bold text */
+}
+
+.close {
+    color: #aaa; /* Light gray color for the close button */
+    font-size: 35px; /* Large font size */
+    font-weight: bold; /* Bold text */
+    position: absolute; /* Positioned at the top-right corner */
+    top: 10px;
+    right: 15px;
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+.close:hover {
+    color: #333; /* Darker gray color when hovering over the close button */
+}
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Start with zero opacity */
+    }
+    to {
+        opacity: 1; /* End with full opacity */
+    }
+}
+
+/* Form and Textarea styling */
+textarea {
+    width: 100%; /* Makes the textarea take up the full width */
+    padding: 12px; /* Adds padding inside the textarea */
+    font-size: 1rem; /* Font size for text inside the textarea */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 20px; /* Adds space below the textarea */
+    resize: vertical; /* Allows vertical resizing */
+    box-sizing: border-box; /* Ensures padding does not affect width */
+    transition: border-color 0.3s ease; /* Smooth transition on focus */
+}
+
+textarea:focus {
+    border-color: #0056b3; /* Blue border on focus */
+    outline: none; /* Removes outline when focused */
+}
+
+/* Styling the transactions table */
+table {
+    width: 100%; /* Makes the table take up the full width */
+    border-collapse: collapse; /* Merges table borders */
+    margin: 25px 0; /* Adds space above and below the table */
+    font-size: 1rem; /* Font size for table content */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05); /* Light shadow for depth */
+}
+
+table th, table td {
+    border: 1px solid #ddd; /* Light gray border for table cells */
+    padding: 12px; /* Adds padding inside the cells */
+    text-align: center; /* Centers text inside cells */
+    vertical-align: middle; /* Vertically centers text inside cells */
+}
+
+table th {
+    background-color: #0056b3; /* Blue background for table headers */
+    color: #fff; /* White text color for headers */
+    font-weight: bold; /* Bold text for headers */
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+table tr:hover {
+    background-color: #f1f1f1; /* Light hover effect for rows */
+    transform: translateY(-2px); /* Raises the row slightly on hover */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 15px; /* Reduces padding on smaller screens */
+    }
+
+    h1 {
+        font-size: 2rem; /* Reduces font size for headings */
+    }
+
+    button {
+        width: 100%; /* Makes buttons take up the full width */
+        padding: 14px; /* Adds more padding */
+    }
+
+    .modal-content {
+        width: 85%; /* Makes modal content take up more width */
+    }
+
+    li {
+        font-size: 15px; /* Reduces font size in list items */
+        padding: 12px; /* Adjusts padding in list items */
+    }
+
+    table th, table td {
+        padding: 10px; /* Adjusts padding in table cells */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5rem; /* Further reduces font size for headings */
+    }
+
+    button {
+        padding: 12px; /* Adjusts padding in buttons */
+    }
+
+    li {
+        font-size: 14px; /* Further reduces font size in list items */
+        padding: 10px; /* Adjusts padding in list items */
+    }
+
+    table th, table td {
+        padding: 8px; /* Further adjusts padding in table cells */
+    }
+}
