@@ -1,4 +1,4 @@
-/* Basic reset for the page */
+/* Basic reset for the page to ensure consistent styling across browsers */
 body, h1, h2, ul, li, form, table {
     margin: 0;
     padding: 0;
@@ -8,160 +8,119 @@ body, h1, h2, ul, li, form, table {
 /* General page styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f7f7;
-    color: #333;
+    background-color: #f7f7f7; /* Light gray background */
+    color: #000000; /* Dark text color for readability */
     padding: 20px;
-    line-height: 1.6;
+    line-height: 1.6; /* Increased line height for better readability */
 }
 
 h1 {
-    color: #0056b3;
+    color: #0056b3; /* Blue colour for main heading */
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
-    letter-spacing: 1px;
+    letter-spacing: 1px; /* Adds spacing between letters */
 }
 
 h2 {
-    color: #333;
+    color: #000000;
     font-size: 1.75rem;
     margin-bottom: 15px;
-    font-weight: 600;
+    font-weight: 600; /* Bold heading for sections */
 }
 
 /* Styling for the notes list */
 ul {
-    list-style-type: none;
+    list-style-type: none; /* Removes default list styling */
     padding: 0;
 }
 
 li {
-    background-color: #fff;
+    background-color: #fff; /* White background for notes */
     padding: 15px;
     margin: 8px 0;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Soft shadow for notes */
+    transition: all 0.3s ease; /* Smooth transition effect for hover */
 }
 
 li:hover {
-    background-color: #eef2f7;
-    transform: translateY(-2px);
+    background-color: #eef2f7; /* Light gray on hover */
+    transform: translateY(-2px); /* Slight raise effect on hover */
 }
 
 /* Button Styling */
 button {
-    background-color: #0056b3;
-    color: white;
+    background-color: #0056b3; /* Blue background */
+    color: white; /* White text color */
     padding: 12px 24px;
     font-size: 1rem;
     border: none;
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
+    
 }
 
 button:hover {
-    background-color: #004080;
-    transform: translateY(-2px);
+    background-color: #004080; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift effect on hover */
 }
 
 button:active {
-    background-color: #003366;
+    background-color: #003366; /* Even darker blue when button is clicked */
 }
 
 /* Modal Styling */
 .modal {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4);
-    transition: opacity 0.3s ease;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity for background */
+    padding-top: 60px; /* Position modal content below the top */
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 30px;
-    width: 70%;
+    background-color: white;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
     max-width: 600px;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
-/* Form and Textarea styling */
-textarea {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    resize: vertical;
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-/* Table styling */
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Table Styling */
 table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
 }
 
-table th, table td {
-    padding: 12px;
+th, td {
+    padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid #ddd;
 }
 
-table th {
-    background-color: #0056b3; /* Blue color for the headers */
-    color: white; /* White text for better contrast */
+th {
+    background-color: #0056b3; /* Light gray background for headers */
 }
-
-/* Adjust spacing for specific columns */
-table td:nth-child(3) { /* Amount column */
-    padding-right: 30px;
-}
-
-table td:nth-child(4), /* Transaction Date column */
-table th:nth-child(4) {
-    text-align: center;
-    padding-left: 20px; /* Move Date column right */
-}
-
-table td:nth-child(5), /* Transaction Time column */
-table th:nth-child(5) {
-    text-align: center;
-    padding-left: 50px; /* Consistent spacing as ID column */
-}
-
-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* Modal Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 1.5rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-
-
-

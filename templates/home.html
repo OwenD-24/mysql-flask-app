@@ -4,23 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collections - Dashboard</title>
+    <!-- Link to the external CSS file for styling -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <h1>Collections Dashboard</h1>
 
-    <!-- Display notes section -->
+    <!-- Section for displaying the collector notes -->
     <section>
         <h2>Collector Notes</h2>
+        <!-- Button to trigger the modal for adding a note -->
         <button id="openModalBtn">Add Note</button>
         <ul>
+            <!-- Loop through the notes and display each one with its details -->
             {% for note in notes %}
                 <li>{{ note[1] }} - Transaction ID: {{ note[2] }} - Payment Plan ID: {{ note[3] }}</li>
             {% endfor %}
         </ul>
     </section>
 
-    <!-- Display customer transactions section -->
+    <!-- Section for displaying customer transactions -->
     <section>
         <h2>Customer Transactions</h2>
         <table>
@@ -34,6 +37,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Loop through transactions and display each in a table row -->
                 {% for transaction in transactions %}
                     <tr>
                         <td>{{ transaction[0] }}</td>
@@ -47,7 +51,7 @@
         </table>
     </section>
 
-    <!-- Display payment plans section -->
+    <!-- Section for displaying payment plans -->
     <section>
         <h2>Payment Plans</h2>
         <table>
@@ -61,6 +65,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Loop through payment plans and display each in a table row -->
                 {% for plan in payment_plans %}
                     <tr>
                         <td>{{ plan[1] }}</td>
@@ -77,18 +82,22 @@
     <!-- Modal for adding a note -->
     <div id="noteModal" class="modal">
         <div class="modal-content">
+            <!-- Close button for the modal -->
             <span class="close">&times;</span>
             <h2>Add a Note</h2>
+            <!-- Form to submit a new note -->
             <form method="POST" action="/add_note" id="noteForm">
-                <label for="transaction_id">Transaction</label>
+                <label for="transaction_id">New Transaction</label>
                 <select name="transaction_id" id="transaction_id" required>
+                    <!-- Loop through transactions to populate the select options -->
                     {% for transaction in transactions %}
                         <option value="{{ transaction[0] }}">{{ transaction[1] }} - ${{ transaction[2] }}</option>
                     {% endfor %}
                 </select>
 
-                <label for="payment_plan_id">Payment Plan</label>
+                <label for="payment_plan_id">New Payment Plan</label>
                 <select name="payment_plan_id" id="payment_plan_id" required>
+                    <!-- Loop through payment plans to populate the select options -->
                     {% for plan in payment_plans %}
                         <option value="{{ plan[0] }}">{{ plan[1] }} - ${{ plan[3] }}</option>
                     {% endfor %}
@@ -102,6 +111,7 @@
         </div>
     </div>
 
+    <!-- Link to the external JS file for modal functionality -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
