@@ -4,16 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Collections - Dashboard</title>
-    <!-- Link to external CSS file -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
     <h1>Collections Dashboard</h1>
 
-    <!-- Section for displaying collector notes -->
+    <!-- Display notes section -->
     <section>
         <h2>Collector Notes</h2>
-        <!-- Button to open the modal for adding a new note -->
         <button id="openModalBtn">Add Note</button>
         <ul>
             {% for note in notes %}
@@ -22,7 +20,7 @@
         </ul>
     </section>
 
-    <!-- Section for displaying customer transactions -->
+    <!-- Display customer transactions section -->
     <section>
         <h2>Customer Transactions</h2>
         <table>
@@ -32,6 +30,7 @@
                     <th>Customer Name</th>
                     <th>Amount</th>
                     <th>Transaction Date</th>
+                    <th>Transaction Time</th>
                 </tr>
             </thead>
             <tbody>
@@ -41,13 +40,14 @@
                         <td>{{ transaction[1] }}</td>
                         <td>${{ transaction[2] }}</td>
                         <td>{{ transaction[3] }}</td>
+                        <td>{{ transaction[4] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
         </table>
     </section>
 
-    <!-- Section for displaying payment plans -->
+    <!-- Display payment plans section -->
     <section>
         <h2>Payment Plans</h2>
         <table>
@@ -56,7 +56,6 @@
                     <th>Plan Name</th>
                     <th>Duration</th>
                     <th>Price</th>
-                    <th>Details</th>
                     <th>Start Date</th>
                     <th>End Date</th>
                 </tr>
@@ -69,7 +68,6 @@
                         <td>${{ plan[3] }}</td>
                         <td>{{ plan[4] }}</td>
                         <td>{{ plan[5] }}</td>
-                        <td>{{ plan[6] }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -82,23 +80,20 @@
             <span class="close">&times;</span>
             <h2>Add a Note</h2>
             <form method="POST" action="/add_note" id="noteForm">
-                <!-- Select transaction from the list -->
-                <label for="transaction_id">Select Transaction</label>
+                <label for="transaction_id">Transaction</label>
                 <select name="transaction_id" id="transaction_id" required>
                     {% for transaction in transactions %}
                         <option value="{{ transaction[0] }}">{{ transaction[1] }} - ${{ transaction[2] }}</option>
                     {% endfor %}
                 </select>
 
-                <!-- Select payment plan from the list -->
-                <label for="payment_plan_id">Select Payment Plan</label>
+                <label for="payment_plan_id">Payment Plan</label>
                 <select name="payment_plan_id" id="payment_plan_id" required>
                     {% for plan in payment_plans %}
                         <option value="{{ plan[0] }}">{{ plan[1] }} - ${{ plan[3] }}</option>
                     {% endfor %}
                 </select>
 
-                <!-- Input field for note -->
                 <label for="note">Note</label>
                 <textarea name="note" id="note" required></textarea>
 
@@ -107,9 +102,6 @@
         </div>
     </div>
 
-    <!-- Link to external JS file for handling the modal -->
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
-
-

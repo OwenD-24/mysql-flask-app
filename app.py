@@ -5,11 +5,11 @@ from flask_mysqldb import MySQL
 app = Flask(__name__)
 
 # MySQL Configuration
-app.config['MYSQL_HOST'] = '127.0.0.1'  # Local MySQL server address (localhost)
+app.config['MYSQL_HOST'] = '127.0.0.1'  # Local MySQL server address
 app.config['MYSQL_PORT'] = 3306  # Default MySQL port
-app.config['MYSQL_USER'] = 'flask_user'  # MySQL username (change it to your actual username)
-app.config['MYSQL_PASSWORD'] = 'mypassword'  # MySQL password (change it to your actual password)
-app.config['MYSQL_DB'] = 'collections'  # Database name (ensure the DB exists in MySQL)
+app.config['MYSQL_USER'] = 'root'  # MySQL username
+app.config['MYSQL_PASSWORD'] = 'mypassword'  # MySQL password
+app.config['MYSQL_DB'] = 'collections'  # Database name
 
 # Initialize MySQL connection
 mysql = MySQL(app)
@@ -24,7 +24,7 @@ def home():
     notes = cur.fetchall()
 
     # Fetch data from customer_transactions table
-    cur.execute("SELECT * FROM customer_transactions")
+    cur.execute("SELECT id, customer_name, amount, DATE_FORMAT(transaction_date, '%Y-%m-%d') AS transaction_date, TIME_FORMAT(transaction_time, '%H:%i:%s') AS transaction_time FROM customer_transactions")
     transactions = cur.fetchall()
 
     # Fetch data from payment_plans table
@@ -50,8 +50,8 @@ def add_note():
         cur = mysql.connection.cursor()
 
         # Get foreign keys for transaction and payment plan from the form
-        transaction_id = request.form['transaction_id']
-        payment_plan_id = request.form['payment_plan_id']
+        transaction_id = request.form.get('transaction_id')
+        payment_plan_id = request.form.get('payment_plan_id')
         
         # Insert note with foreign keys into the database
         cur.execute(
@@ -66,4 +66,3 @@ def add_note():
 
 if __name__ == "__main__":
     app.run(debug=True)
-
