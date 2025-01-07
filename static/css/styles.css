@@ -97,8 +97,7 @@ button:active {
     transform: translate(-50%, -50%); /* Adjust for exact centering */
 }
 
-
-
+/* Modal Header */
 .modal-header {
     font-size: 2rem; /* Larger font size for the modal header */
     margin-bottom: 25px; /* Adds space below the header */
@@ -106,6 +105,7 @@ button:active {
     font-weight: 700; /* Bold text */
 }
 
+/* Close button */
 .close {
     color: #aaa; /* Light gray color for the close button */
     font-size: 35px; /* Large font size */
@@ -148,7 +148,26 @@ textarea:focus {
     outline: none; /* Removes outline when focused */
 }
 
-/* Styling the transactions table */
+/* Form Layout for Modal */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Adds space between form fields */
+}
+
+form > label, form > select, form > textarea {
+    margin-bottom: 10px; /* Adds margin between each label/input */
+}
+
+/* Styling for dropdowns inside the modal */
+select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+/* Styling for table (if present) */
 table {
     width: 100%; /* Makes the table take up the full width */
     border-collapse: collapse; /* Merges table borders */
