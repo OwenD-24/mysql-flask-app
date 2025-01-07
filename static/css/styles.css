@@ -80,8 +80,6 @@ button:active {
     width: 100%; /* Full screen width */
     height: 100%; /* Full screen height */
     background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent black background */
-    justify-content: center; /* Centers content horizontally */
-    align-items: center; /* Centers content vertically */
     transition: opacity 0.3s ease; /* Smooth transition for visibility */
 }
 
@@ -93,8 +91,13 @@ button:active {
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Shadow for depth */
     animation: fadeIn 0.3s ease-in-out; /* Fade-in animation */
-    position: relative; /* Positions the modal content */
+    position: absolute; /* Position relative to the parent modal */
+    top: 50%; /* Vertically center the modal */
+    left: 50%; /* Horizontally center the modal */
+    transform: translate(-50%, -50%); /* Adjust for exact centering */
 }
+
+
 
 .modal-header {
     font-size: 2rem; /* Larger font size for the modal header */
