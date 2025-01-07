@@ -8,7 +8,7 @@ app = Flask(__name__)
 # MySQL Configuration - Set up the database connection parameters
 app.config['MYSQL_HOST'] = '127.0.0.1'        # MySQL host, usually '127.0.0.1' for local dev
 app.config['MYSQL_PORT'] = 3306               # Default MySQL port is 3306
-app.config['MYSQL_USER'] = 'root'             # MySQL username (change as needed)
+app.config['MYSQL_USER'] = 'flask_user'             # MySQL username (change as needed)
 app.config['MYSQL_PASSWORD'] = 'mypassword'   # MySQL password (change as needed)
 app.config['MYSQL_DB'] = 'collections'        # Name of the database to connect to
 

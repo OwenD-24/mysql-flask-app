@@ -1,0 +1,102 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collector Notes</title>
+    <!-- Linking the external CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Main header section -->
+    <header>
+        <h1>Collector Notes</h1>
+    </header>
+
+    <!-- Notes Section -->
+    <section class="notes">
+        <h2>Current Notes</h2>
+        <ul>
+            <!-- Loop through the notes and display them dynamically -->
+            {% for note in notes %}
+                <li>{{ note[1] }} - {{ note[2] }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <!-- Add Note Section with a button to open modal -->
+    <section class="add-note">
+        <h2>Add a New Note</h2>
+        <button id="openModalBtn">Add Note</button>
+    </section>
+
+    <!-- Modal for Adding Notes -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Add a Note</h3>
+            <!-- Form to submit a new note -->
+            <form action="{{ url_for('add_note') }}" method="POST">
+                <textarea name="note" rows="4" cols="50" required></textarea><br>
+                <button type="submit">Add Note</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Transactions Table Section -->
+    <section class="transactions">
+        <h1>Customer Transactions</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Customer Name</th>
+                    <th>Transaction Amount</th>
+                    <th>Transaction Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through and display transactions -->
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction[0] }}</td>
+                        <td>{{ transaction[1] }}</td>
+                        <td>${{ transaction[2] }}</td>
+                        <td>{{ transaction[3] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Payment Plans Table Section -->
+    <section class="payment-plans">
+        <h2>Payment Plans</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Plan ID</th>
+                    <th>Customer</th>
+                    <th>Plan Type</th>
+                    <th>Amount Due</th>
+                    <th>Payment Due Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through and display payment plans -->
+                {% for plan in payment_plans %}
+                    <tr>
+                        <td>{{ plan[0] }}</td>
+                        <td>{{ plan[1] }}</td>
+                        <td>{{ plan[2] }}</td>
+                        <td>${{ plan[3] }}</td>
+                        <td>{{ plan[4] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Including the external JavaScript file -->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
