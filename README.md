@@ -44,22 +44,6 @@ The **Collections Dashboard** is a web application built using Flask and MySQL, 
    - **Issue**: Static files (CSS, JavaScript) were not being properly served in the production environment on Heroku.
    - **Fix**: Configured `Flask` to serve static files from the correct directory and ensured proper setup for production in the `config.py` file.
 
-### 7. **Database Connection Issues on Heroku**
-   - **Issue**: The app was failing to connect to the PostgreSQL database on Heroku.
-   - **Fix**: Updated `SQLALCHEMY_DATABASE_URI` to use the correct Heroku PostgreSQL database URL and verified the connection string.
-
-### 8. **Chatbot Response Delay**
-   - **Issue**: The chatbot integrated with OpenAI's API was experiencing delays in response.
-   - **Fix**: Optimized the API request by reducing unnecessary data processing and ensuring efficient handling of API responses.
-
-### 9. **Incorrect Redirect After Login**
-   - **Issue**: After a successful login, users were being redirected to the wrong page.
-   - **Fix**: Updated the login function to redirect users to the appropriate page (e.g., home page or user dashboard) after login using `login_manager`.
-
-### 10. **Cross-Origin Resource Sharing (CORS) Error**
-   - **Issue**: Frontend and backend were not communicating due to CORS issues during API calls.
-   - **Fix**: Installed and configured `flask-cors` to allow cross-origin requests and enable communication between different parts of the app.
-
 ### Database Structure
 
 The application uses a MySQL database to store the following tables:
