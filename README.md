@@ -68,9 +68,8 @@ The application uses a MySQL database to store the following tables:
 ### Application Workflow
 
 1. **Add Customer Transaction**: The user can input new transactions for customers, specifying details such as the customer’s name, amount, and payment status.
-2. **Create Payment Plan**: A payment plan can be added, specifying the total amount, monthly payments, and payment timeline.
-3. **Link Notes to Transactions and Payment Plans**: Collectors can create notes linked to specific customer transactions and payment plans, providing additional context or updates on the status of a payment or transaction.
-4. **View Dashboard**: The dashboard provides an overview of all customer transactions, payment plans, and notes. This allows the user to easily track progress and stay organized.
+2. **Link Notes to Transactions and Payment Plans**: Collectors can create notes linked to specific customer transactions and payment plans, providing additional context or updates on the status of a payment or transaction.
+3. **View Dashboard**: The dashboard provides an overview of all customer transactions, payment plans, and notes. This allows the user to easily track progress and stay organized.
 
 ### Key Routes
 
