@@ -28,19 +28,15 @@ The **Collections Dashboard** is a web application built using Flask and MySQL, 
    - **Issue**: Changes made to the SQLAlchemy model weren’t being reflected in the database.
    - **Fix**: Ran `flask db migrate` and `flask db upgrade` to ensure the database schema was updated after modifying the models.
 
-### 3. **Incorrect Session Management**
-   - **Issue**: User session was not being saved correctly after login, causing issues with user authentication.
-   - **Fix**: Added `session.permanent = True` to ensure session persistence and used `flask-login` to properly manage user authentication.
-
-### 4. **Template Variables Not Passing to Frontend**
+### 3. **Template Variables Not Passing to Frontend**
    - **Issue**: Some variables passed from routes were not showing up in the templates.
    - **Fix**: Ensured that the variables were being correctly passed in the `render_template` function and that the variable names in the templates matched those in the route.
 
-### 5. **Form Validation Not Working Properly**
+### 4. **Form Validation Not Working Properly**
    - **Issue**: The forms were not validating input fields correctly, causing errors during form submission.
    - **Fix**: Implemented proper form validation using Flask-WTF, and ensured that the form fields were being properly bound and validated.
 
-### 6. **CSS and JS Not Loading on Deployment**
+### 5. **CSS and JS Not Loading on Deployment**
    - **Issue**: Static files (CSS, JavaScript) were not being properly served in the production environment on Heroku.
    - **Fix**: Configured `Flask` to serve static files from the correct directory and ensured proper setup for production in the `config.py` file.
 
