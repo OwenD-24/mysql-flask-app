@@ -16,7 +16,7 @@
         <button id="openModalBtn">Add Note</button>
         <ul>
             {% for note in notes %}
-                <li>{{ note[1] }} - {{ note[2] }}</li>
+                <li>{{ note[1] }} - Transaction ID: {{ note[2] }} - Payment Plan ID: {{ note[3] }}</li>
             {% endfor %}
         </ul>
     </section>
@@ -81,6 +81,24 @@
             <span class="close">&times;</span>
             <h2>Add a Note</h2>
             <form method="POST" action="/add_note">
+                <!-- Select transaction from the list -->
+                <label for="transaction_id">Select Transaction</label>
+                <select name="transaction_id" required>
+                    {% for transaction in transactions %}
+                        <option value="{{ transaction[0] }}">{{ transaction[1] }} - ${{ transaction[2] }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Select payment plan from the list -->
+                <label for="payment_plan_id">Select Payment Plan</label>
+                <select name="payment_plan_id" required>
+                    {% for plan in payment_plans %}
+                        <option value="{{ plan[0] }}">{{ plan[1] }} - ${{ plan[3] }}</option>
+                    {% endfor %}
+                </select>
+
+                <!-- Note field -->
+                <label for="note">Note</label>
                 <textarea name="note" required></textarea>
                 <button type="submit">Add Note</button>
             </form>
@@ -90,7 +108,3 @@
     <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
-
-
-
-

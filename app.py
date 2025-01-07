@@ -40,14 +40,26 @@ def home():
 def add_note():
     if request.method == 'POST':
         note = request.form['note']
+        
+        # Simple form validation: Ensure that the note is not empty
+        if not note:
+            return "Note cannot be empty", 400
+        
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO collector_notes (note) VALUES (%s)", [note])
+        
+        # Example Foreign Key insertion (assuming 'transaction_id' is passed)
+        transaction_id = request.form['transaction_id']  # Assuming transaction_id is passed with the note
+        payment_plan_id = request.form['payment_plan_id']  # Assuming payment_plan_id is passed with the note
+
+        # Inserting note with foreign keys
+        cur.execute(
+            "INSERT INTO collector_notes (note, transaction_id, payment_plan_id) VALUES (%s, %s, %s)", 
+            [note, transaction_id, payment_plan_id]
+        )
         mysql.connection.commit()
         cur.close()
+        
         return redirect(url_for('home'))
 
 if __name__ == "__main__":
     app.run(debug=True)
-
-
-
