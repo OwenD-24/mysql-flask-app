@@ -16,9 +16,7 @@ The **Collections Dashboard** is a web application built using Flask and MySQL, 
 
 - **Flask**: Python web framework used for building the application.
 - **MySQL**: Relational database for storing data such as customer transactions and notes.
-- **Jinja2**: Template engine used by Flask to render dynamic HTML pages.
-- **HTML/CSS**: For front-end design and layout of the dashboard and forms.
-- **Bootstrap**: For responsive design and styling.
+- **HTML/CSS/JS**: For front-end design and layout of the dashboard and forms.
 
 ## Bug Fixes
 
