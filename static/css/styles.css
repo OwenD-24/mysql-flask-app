@@ -124,3 +124,82 @@ th, td {
 th {
     background-color: #0056b3; /* Light gray background for headers */
 }
+
+
+/*----------------------------------------------------------------------------- Additions for Login Page */
+
+/* Centering the login container */
+.login-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 5%;
+}
+
+/* Heading style for login page */
+.login-container h1 {
+    text-align: center;
+    color: #0056b3;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Form group styling for login page */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.form-group input:focus {
+    border-color: #0056b3;
+    outline: none;
+}
+
+/* Login button styling */
+.login-btn {
+    width: 100%;
+    padding: 0.8rem;
+    border: none;
+    background: #0056b3;
+    color: white;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #003d7a;
+}
+
+/* Links under the form */
+.login-links {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.login-links a {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+

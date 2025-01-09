@@ -64,6 +64,21 @@ def add_note():
         # Redirect to the home page after successfully adding the note
         return redirect(url_for('home'))
 
+# Add a route for the login page
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+        
+        # Validate credentials (replace this with database logic)
+        if email == "admin@example.com" and password == "password123":
+            return redirect(url_for('home'))
+        else:
+            return "Invalid credentials. Please try again.", 401
+
+    return render_template('login.html')
+
 # Run the app in debug mode if executed directly
 if __name__ == "__main__":
     app.run(debug=True)
