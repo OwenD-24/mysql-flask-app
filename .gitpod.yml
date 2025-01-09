@@ -1,0 +1,11 @@
+tasks:
+  - init: |
+      sudo apt-get update
+      sudo apt-get install -y mysql-server
+      sudo service mysql start
+      sudo mysql -e "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mypassword'; FLUSH PRIVILEGES;"
+      sudo mysql -e "CREATE DATABASE IF NOT EXISTS collections;"
+
+ports:
+  - port: 3306
+    onOpen: ignore
