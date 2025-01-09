@@ -1,117 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collections - Dashboard</title>
-    <!-- Link to the external CSS file for styling -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-</head>
-<body>
-    <h1>Collections Dashboard</h1>
+{% extends "base.html" %}
 
-    <!-- Section for displaying the collector notes -->
-    <section>
-        <h2>Collector Notes</h2>
-        <!-- Button to trigger the modal for adding a note -->
-        <button id="openModalBtn">Add Note</button>
-        <ul>
-            <!-- Loop through the notes and display each one with its details -->
-            {% for note in notes %}
-                <li>{{ note[1] }} - Transaction ID: {{ note[2] }} - Payment Plan ID: {{ note[3] }}</li>
-            {% endfor %}
-        </ul>
-    </section>
+{% block title %}Dashboard{% endblock %}
 
-    <!-- Section for displaying customer transactions -->
-    <section>
-        <h2>Customer Transactions</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Customer Name</th>
-                    <th>Amount</th>
-                    <th>Transaction Date</th>
-                    <th>Transaction Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Loop through transactions and display each in a table row -->
-                {% for transaction in transactions %}
-                    <tr>
-                        <td>{{ transaction[0] }}</td>
-                        <td>{{ transaction[1] }}</td>
-                        <td>${{ transaction[2] }}</td>
-                        <td>{{ transaction[3] }}</td>
-                        <td>{{ transaction[4] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+{% block content %}
+<h1>Collections Dashboard</h1>
 
-    <!-- Section for displaying payment plans -->
-    <section>
-        <h2>Payment Plans</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Plan Name</th>
-                    <th>Duration</th>
-                    <th>Price</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Loop through payment plans and display each in a table row -->
-                {% for plan in payment_plans %}
-                    <tr>
-                        <td>{{ plan[1] }}</td>
-                        <td>{{ plan[2] }} months</td>
-                        <td>${{ plan[3] }}</td>
-                        <td>{{ plan[4] }}</td>
-                        <td>{{ plan[5] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </section>
+<!-- Collector Notes Section -->
+<section>
+  <h2>Collector Notes</h2>
+  <button id="openModalBtn">Add Note</button>
+  <ul>
+    {% for note in notes %}
+      <li>{{ note[1] }} - Transaction ID: {{ note[2] }} - Payment Plan ID: {{ note[3] }}</li>
+    {% else %}
+      <li>No notes available.</li>
+    {% endfor %}
+  </ul>
+</section>
 
-    <!-- Modal for adding a note -->
-    <div id="noteModal" class="modal">
-        <div class="modal-content">
-            <!-- Close button for the modal -->
-            <span class="close">&times;</span>
-            <h2>Add a Note</h2>
-            <!-- Form to submit a new note -->
-            <form method="POST" action="/add_note" id="noteForm">
-                <label for="transaction_id">New Transaction</label>
-                <select name="transaction_id" id="transaction_id" required>
-                    <!-- Loop through transactions to populate the select options -->
-                    {% for transaction in transactions %}
-                        <option value="{{ transaction[0] }}">{{ transaction[1] }} - ${{ transaction[2] }}</option>
-                    {% endfor %}
-                </select>
+<!-- Customer Transactions Section -->
+<section>
+  <h2>Customer Transactions</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Customer Name</th>
+        <th>Amount</th>
+        <th>Transaction Date</th>
+        <th>Transaction Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for transaction in transactions %}
+        <tr>
+          <td>{{ transaction[0] }}</td>
+          <td>{{ transaction[1] }}</td>
+          <td>${{ transaction[2] }}</td>
+          <td>{{ transaction[3] }}</td>
+          <td>{{ transaction[4] }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="5">No transactions available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
 
-                <label for="payment_plan_id">New Payment Plan</label>
-                <select name="payment_plan_id" id="payment_plan_id" required>
-                    <!-- Loop through payment plans to populate the select options -->
-                    {% for plan in payment_plans %}
-                        <option value="{{ plan[0] }}">{{ plan[1] }} - ${{ plan[3] }}</option>
-                    {% endfor %}
-                </select>
+<!-- Payment Plans Section -->
+<section>
+  <h2>Payment Plans</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Plan Name</th>
+        <th>Duration</th>
+        <th>Price</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for plan in payment_plans %}
+        <tr>
+          <td>{{ plan[1] }}</td>
+          <td>{{ plan[2] }} months</td>
+          <td>${{ plan[3] }}</td>
+          <td>{{ plan[4] }}</td>
+          <td>{{ plan[5] }}</td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="5">No payment plans available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
 
-                <label for="note">Note</label>
-                <textarea name="note" id="note" required></textarea>
+<!-- Modal for Adding a Note -->
+<div id="noteModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Add a Note</h2>
+    <form method="POST" action="/add_note">
+      <label for="transaction_id">Transaction</label>
+      <select name="transaction_id" id="transaction_id" required>
+        {% for transaction in transactions %}
+          <option value="{{ transaction[0] }}">{{ transaction[1] }} - ${{ transaction[2] }}</option>
+        {% else %}
+          <option value="" disabled>No transactions available</option>
+        {% endfor %}
+      </select>
 
-                <button type="submit">Add Note</button>
-            </form>
-        </div>
-    </div>
+      <label for="payment_plan_id">Payment Plan</label>
+      <select name="payment_plan_id" id="payment_plan_id" required>
+        {% for plan in payment_plans %}
+          <option value="{{ plan[0] }}">{{ plan[1] }} - ${{ plan[3] }}</option>
+        {% else %}
+          <option value="" disabled>No payment plans available</option>
+        {% endfor %}
+      </select>
 
-    <!-- Link to the external JS file for modal functionality -->
-    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-</body>
-</html>
+      <label for="note">Note</label>
+      <textarea name="note" id="note" required></textarea>
+
+      <button type="submit">Add Note</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

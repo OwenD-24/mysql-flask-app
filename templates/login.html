@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-  <div class="login-container">
-    <h1>Login</h1>
-    <form method="POST" action="/login">
-      <div class="form-group">
-        <label for="email">Email or Username</label>
-        <input type="text" id="email" name="email" required>
-      </div>
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
-      </div>
-      <button class="login-btn" type="submit">Login</button>
-    </form>
-    <div class="login-links">
-      <a href="/forgot-password">Forgot Password?</a><br>
-      <a href="/signup">Sign Up</a>
+{% extends "base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="login-container">
+  <h1>Login</h1>
+  <form method="POST" action="{{ url_for('login') }}">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
     </div>
-  </div>
-</body>
-</html>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" required>
+    </div>
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+</div>
+{% endblock %}
+
+

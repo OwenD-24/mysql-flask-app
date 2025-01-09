@@ -130,6 +130,10 @@ th {
 
 /* Centering the login container */
 .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background: white;
     padding: 2rem;
     border-radius: 8px;
@@ -171,6 +175,14 @@ th {
     outline: none;
 }
 
+input, textarea, select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
 /* Login button styling */
 .login-btn {
     width: 100%;
@@ -182,6 +194,12 @@ th {
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+}
+
+/* Accessibility focus styles */
+button:focus, .close:focus, input:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
 }
 
 .login-btn:hover {
