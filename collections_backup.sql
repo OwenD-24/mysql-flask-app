@@ -134,6 +134,34 @@ LOCK TABLES `payment_plans` WRITE;
 INSERT INTO `payment_plans` VALUES (1,'Basic Plan',12,199.99,'2025-01-01','2026-01-01'),(2,'Premium Plan',24,299.99,'2025-02-01','2027-02-01'),(3,'Enterprise Plan',36,499.99,'2025-03-01','2028-03-01');
 /*!40000 ALTER TABLE `payment_plans` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `users` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) NOT NULL,
+  `password_hash` varchar(255) NOT NULL,
+  `role` enum('admin','user') DEFAULT 'user',
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `users`
+--
+
+LOCK TABLES `users` WRITE;
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'pretendemail@gmail.com','scrypt:32768:8:1$jdvpRzO7dLRkC2Uu$2f8982b3b8d1b6b2bdc93e4a0f971c6dfd646906aa23d2961910991f11111e7719dce8452e002838d5ffa5e23e68e6bb17b1f1372131a72076a15136019c2e19','user','2025-01-09 23:42:22'),(2,'admin@example.com','scrypt:32768:8:1$ChWFzpcTD6Og8RR9$7bae64908dc1eecc5e0ea2b00ed348188a86b15c6ee0b6770eb596e35eb9a7f10b9b05508cba7a32bb18c33370955943df9a7129882536a31efc9987a1539c1d','admin','2025-01-09 23:55:21');
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -144,4 +172,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-09 22:48:15
+-- Dump completed on 2025-01-10  0:00:50
