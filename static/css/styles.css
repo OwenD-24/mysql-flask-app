@@ -59,7 +59,6 @@ button {
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    
 }
 
 button:hover {
@@ -92,6 +91,7 @@ button:active {
     border-radius: 8px;
     width: 80%;
     max-width: 600px;
+    overflow: hidden;
 }
 
 .close {
@@ -125,6 +125,20 @@ th {
     background-color: #0056b3; /* Light gray background for headers */
 }
 
+/* Form Styling inside the modal */
+form input, form textarea, form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    width: 100%;
+    margin-bottom: 15px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+}
+
+/* Form fields inside the modal */
+form input[type="text"], form input[type="number"], form input[type="date"], form input[type="time"], form select {
+    max-width: 100%; /* Prevent input fields from overflowing */
+}
 
 /*----------------------------------------------------------------------------- Additions for Login Page */
 
@@ -181,6 +195,7 @@ input, textarea, select {
     border-radius: 4px;
     width: 100%;
     margin-bottom: 15px;
+    box-sizing: border-box; /* Ensures padding doesn't affect the width */
 }
 
 /* Login button styling */
@@ -220,4 +235,3 @@ button:focus, .close:focus, input:focus {
 .login-links a:hover {
     text-decoration: underline;
 }
-

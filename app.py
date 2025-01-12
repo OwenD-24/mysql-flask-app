@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 from werkzeug.security import generate_password_hash, check_password_hash
 from dotenv import load_dotenv
+from datetime import datetime
 import os
 
 # Load environment variables from .env file
@@ -47,13 +48,13 @@ def login():
 
     return render_template('login.html')
 
-# Logout route
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
     session.pop('user_id', None)
     session.pop('user_role', None)
-    return redirect(url_for('login'))
+    return redirect(url_for('login'))  # Make sure this points to 'login'
+
 
 # Home route
 @app.route('/')
@@ -62,20 +63,63 @@ def home():
         return redirect(url_for('login'))
 
     cur = mysql.connection.cursor()
+    
+    # Fetch all notes
     cur.execute("SELECT * FROM collector_notes")
     notes = cur.fetchall()
 
+    # Fetch transaction details along with associated payment plans
     cur.execute(
-        "SELECT id, customer_name, amount, DATE_FORMAT(transaction_date, '%Y-%m-%d') AS transaction_date, "
-        "TIME_FORMAT(transaction_time, '%H:%i:%s') AS transaction_time FROM customer_transactions"
+        "SELECT c.id, c.customer_name, c.amount, DATE_FORMAT(c.transaction_date, '%Y-%m-%d') AS transaction_date, "
+        "TIME_FORMAT(c.transaction_time, '%H:%i:%s') AS transaction_time, p.plan_name "
+        "FROM customer_transactions c LEFT JOIN payment_plans p ON c.payment_plan_id = p.id"
     )
     transactions = cur.fetchall()
 
+    # Fetch all payment plans
     cur.execute("SELECT * FROM payment_plans")
     payment_plans = cur.fetchall()
+
     cur.close()
 
+    # Render the home page with notes, transactions, and payment plans
     return render_template('home.html', notes=notes, transactions=transactions, payment_plans=payment_plans)
+
+# Note Route
+@app.route('/add_note', methods=['POST'])
+def add_note():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
+    note = request.form['note']
+    customer_name = request.form['customer_name']
+    amount = request.form['amount']
+    transaction_date = request.form['transaction_date']
+    transaction_time = request.form['transaction_time']
+    payment_plan_id = request.form['payment_plan_id']
+    
+    # Create new transaction
+    cur = mysql.connection.cursor()
+    cur.execute(
+        "INSERT INTO customer_transactions (customer_name, amount, transaction_date, transaction_time, payment_plan_id) "
+        "VALUES (%s, %s, %s, %s, %s)",
+        (customer_name, amount, transaction_date, transaction_time, payment_plan_id)
+    )
+    mysql.connection.commit()
+    
+    # Get the transaction ID of the newly created transaction
+    cur.execute("SELECT LAST_INSERT_ID()")
+    transaction_id = cur.fetchone()[0]
+
+    # Create new collector note
+    cur.execute(
+        "INSERT INTO collector_notes (note, transaction_id, payment_plan_id) VALUES (%s, %s, %s)",
+        (note, transaction_id, payment_plan_id)
+    )
+    mysql.connection.commit()
+    cur.close()
+
+    return redirect(url_for('home'))
 
 # Admin dashboard
 @app.route('/admin')
@@ -110,7 +154,7 @@ def register():
 
         return redirect(url_for('login'))  # Redirect after successful registration
 
-    return render_template('signup.html')  # Display the registration form
+    return render_template('signup.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

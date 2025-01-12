@@ -29,6 +29,7 @@
         <th>Amount</th>
         <th>Transaction Date</th>
         <th>Transaction Time</th>
+        <th>Payment Plan</th>
       </tr>
     </thead>
     <tbody>
@@ -39,10 +40,11 @@
           <td>${{ transaction[2] }}</td>
           <td>{{ transaction[3] }}</td>
           <td>{{ transaction[4] }}</td>
+          <td>{{ transaction[5] }}</td> <!-- Payment Plan -->
         </tr>
       {% else %}
         <tr>
-          <td colspan="5">No transactions available.</td>
+          <td colspan="6">No transactions available.</td>
         </tr>
       {% endfor %}
     </tbody>
@@ -85,30 +87,28 @@
   <div class="modal-content">
     <span class="close">&times;</span>
     <h2>Add a Note</h2>
-    <form method="POST" action="/add_note">
-      <label for="transaction_id">Transaction</label>
-      <select name="transaction_id" id="transaction_id" required>
-        {% for transaction in transactions %}
-          <option value="{{ transaction[0] }}">{{ transaction[1] }} - ${{ transaction[2] }}</option>
-        {% else %}
-          <option value="" disabled>No transactions available</option>
-        {% endfor %}
+    <form method="POST" action="{{ url_for('add_note') }}">
+      <textarea name="note" placeholder="Enter note details..."></textarea>
+      
+      <!-- Create a New Transaction -->
+      <h3>New Transaction</h3>
+      <input type="text" name="customer_name" placeholder="Customer Name" required>
+      <input type="number" name="amount" step="0.01" placeholder="Amount" required>
+      <input type="date" name="transaction_date" required>
+      <input type="time" name="transaction_time" required>
+
+      <!-- Create or Choose an Existing Payment Plan -->
+      <h3>Payment Plan</h3>
+      <select name="payment_plan_id">
+          <option value="1">Basic Plan</option>
+          <option value="2">Premium Plan</option>
+          <option value="3">Standard Plan</option> <!-- Add Standard Plan -->
       </select>
-
-      <label for="payment_plan_id">Payment Plan</label>
-      <select name="payment_plan_id" id="payment_plan_id" required>
-        {% for plan in payment_plans %}
-          <option value="{{ plan[0] }}">{{ plan[1] }} - ${{ plan[3] }}</option>
-        {% else %}
-          <option value="" disabled>No payment plans available</option>
-        {% endfor %}
-      </select>
-
-      <label for="note">Note</label>
-      <textarea name="note" id="note" required></textarea>
-
-      <button type="submit">Add Note</button>
+      <button type="submit">Add Note, Transaction & Payment Plan</button>
     </form>
   </div>
 </div>
+
 {% endblock %}
+
+
