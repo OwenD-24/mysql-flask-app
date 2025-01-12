@@ -8,51 +8,51 @@ body, h1, h2, ul, li, form, table {
 /* General page styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f7f7f7; /* Light gray background */
-    color: #000000; /* Dark text color for readability */
+    background-color: #f7f7f7;
+    color: #000000;
     padding: 20px;
-    line-height: 1.6; /* Increased line height for better readability */
+    line-height: 1.6;
 }
 
 h1 {
-    color: #0056b3; /* Blue colour for main heading */
+    color: #0056b3;
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
-    letter-spacing: 1px; /* Adds spacing between letters */
+    letter-spacing: 1px;
 }
 
 h2 {
     color: #000000;
     font-size: 1.75rem;
     margin-bottom: 15px;
-    font-weight: 600; /* Bold heading for sections */
+    font-weight: 600;
 }
 
 /* Styling for the notes list */
 ul {
-    list-style-type: none; /* Removes default list styling */
+    list-style-type: none;
     padding: 0;
 }
 
 li {
-    background-color: #fff; /* White background for notes */
+    background-color: #fff;
     padding: 15px;
     margin: 8px 0;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Soft shadow for notes */
-    transition: all 0.3s ease; /* Smooth transition effect for hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
 }
 
 li:hover {
-    background-color: #eef2f7; /* Light gray on hover */
-    transform: translateY(-2px); /* Slight raise effect on hover */
+    background-color: #eef2f7;
+    transform: translateY(-2px);
 }
 
 /* Button Styling */
 button {
-    background-color: #0056b3; /* Blue background */
-    color: white; /* White text color */
+    background-color: #0056b3;
+    color: white;
     padding: 12px 24px;
     font-size: 1rem;
     border: none;
@@ -61,51 +61,37 @@ button {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Spacing for the "Update Note" button */
+button[type="submit"] {
+    margin-top: 20px; /* Adds space above the button */
+}
+
+/* Button hover effect */
 button:hover {
-    background-color: #004080; /* Darker blue on hover */
-    transform: translateY(-2px); /* Slight lift effect on hover */
+    background-color: #004080;
+    transform: translateY(-2px);
 }
 
 button:active {
-    background-color: #003366; /* Even darker blue when button is clicked */
+    background-color: #003366;
 }
 
-/* Modal Styling */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
+/* Form Styling */
+form input, form textarea, form select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
     width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4); /* Black with opacity for background */
-    padding-top: 60px; /* Position modal content below the top */
+    margin-bottom: 20px; /* Increases space below form fields */
+    box-sizing: border-box;
 }
 
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 20px;
-    border-radius: 8px;
-    width: 80%;
-    max-width: 600px;
-    overflow: hidden;
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+/* Styling for select dropdown specifically */
+form select {
+    font-size: 1rem;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px; /* Additional space below the select element */
 }
 
 /* Table Styling */
@@ -122,7 +108,7 @@ th, td {
 }
 
 th {
-    background-color: #0056b3; /* Light gray background for headers */
+    background-color: #0056b3;
 }
 
 /* Form Styling inside the modal */
@@ -132,106 +118,63 @@ form input, form textarea, form select {
     border-radius: 4px;
     width: 100%;
     margin-bottom: 15px;
-    box-sizing: border-box; /* Ensures padding doesn't affect the width */
+    box-sizing: border-box;
 }
 
-/* Form fields inside the modal */
-form input[type="text"], form input[type="number"], form input[type="date"], form input[type="time"], form select {
-    max-width: 100%; /* Prevent input fields from overflowing */
-}
-
-/*----------------------------------------------------------------------------- Additions for Login Page */
-
-/* Centering the login container */
-.login-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+/* Modal Styling */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    top: 0; /* Top of the page */
+    left: 0;
     width: 100%;
-    max-width: 400px;
-    margin: auto;
-    margin-top: 5%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
+    z-index: 1000; /* On top of everything else */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    padding-top: 0; /* Remove top padding */
 }
 
-/* Heading style for login page */
-.login-container h1 {
-    text-align: center;
-    color: #0056b3;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+/* Modal content with full width */
+.modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    width: 100%; /* Stretch across the whole width */
+    max-width: 1000px; /* Optional: to prevent it from stretching too wide */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: modalFadeIn 0.3s ease;
 }
 
-/* Form group styling for login page */
-.form-group {
-    margin-bottom: 1.5rem;
+/* Modal content centered (if you need it) */
+.modal-content.centered {
+    width: 100%; /* Can adjust this to your preferred width */
+    max-width: 800px;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
+/* Modal close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
 }
 
-.form-group input {
-    width: 100%;
-    padding: 0.8rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-}
-
-.form-group input:focus {
-    border-color: #0056b3;
-    outline: none;
-}
-
-input, textarea, select {
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    width: 100%;
-    margin-bottom: 15px;
-    box-sizing: border-box; /* Ensures padding doesn't affect the width */
-}
-
-/* Login button styling */
-.login-btn {
-    width: 100%;
-    padding: 0.8rem;
-    border: none;
-    background: #0056b3;
-    color: white;
-    border-radius: 4px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-/* Accessibility focus styles */
-button:focus, .close:focus, input:focus {
-    outline: 2px solid #0056b3;
-    outline-offset: 2px;
-}
-
-.login-btn:hover {
-    background: #003d7a;
-}
-
-/* Links under the form */
-.login-links {
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.login-links a {
-    color: #0056b3;
+.close:hover,
+.close:focus {
+    color: black;
     text-decoration: none;
+    cursor: pointer;
 }
 
-.login-links a:hover {
-    text-decoration: underline;
+/* Modal animation */
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }

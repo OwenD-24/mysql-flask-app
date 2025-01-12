@@ -121,6 +121,82 @@ def add_note():
 
     return redirect(url_for('home'))
 
+@app.route('/edit_note/<int:note_id>', methods=['GET', 'POST'])
+def edit_note(note_id):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
+    cur = mysql.connection.cursor()
+
+    # Fetch the note and related transaction
+    cur.execute(
+        "SELECT n.id, n.note, t.id, t.customer_name, t.amount, t.transaction_date, t.transaction_time, t.payment_plan_id "
+        "FROM collector_notes n "
+        "JOIN customer_transactions t ON n.transaction_id = t.id "
+        "WHERE n.id = %s", (note_id,)
+    )
+    note_data = cur.fetchone()
+
+    # Fetch all payment plans for the dropdown
+    cur.execute("SELECT id, plan_name FROM payment_plans")
+    payment_plans = cur.fetchall()
+
+    if request.method == 'POST':
+        updated_note = request.form['note']
+        updated_customer_name = request.form['customer_name']
+        updated_amount = request.form['amount']
+        updated_transaction_date = request.form['transaction_date']
+        updated_transaction_time = request.form['transaction_time']
+        updated_payment_plan_id = request.form.get('payment_plan_id')  # Use get() to avoid KeyError
+
+        if not updated_payment_plan_id:
+            return "Payment plan is required", 400  # Return an error if no payment plan was selected
+
+        # Update the customer transaction
+        cur.execute(
+            "UPDATE customer_transactions SET customer_name = %s, amount = %s, transaction_date = %s, "
+            "transaction_time = %s, payment_plan_id = %s WHERE id = %s",
+            (updated_customer_name, updated_amount, updated_transaction_date, updated_transaction_time, updated_payment_plan_id, note_data[2])
+        )
+
+        # Update the collector note
+        cur.execute(
+            "UPDATE collector_notes SET note = %s WHERE id = %s",
+            (updated_note, note_id)
+        )
+
+        mysql.connection.commit()
+        cur.close()
+
+        return redirect(url_for('home'))
+
+    # Pre-populate the form with current values
+    return render_template('edit_note.html', note_data=note_data, payment_plans=payment_plans)
+
+@app.route('/delete_note/<int:note_id>', methods=['GET'])
+def delete_note(note_id):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
+    cur = mysql.connection.cursor()
+
+    # Fetch the associated transaction ID
+    cur.execute("SELECT transaction_id FROM collector_notes WHERE id = %s", (note_id,))
+    transaction_id = cur.fetchone()
+
+    if transaction_id:
+        # Delete the note
+        cur.execute("DELETE FROM collector_notes WHERE id = %s", (note_id,))
+
+        # Optionally, delete the associated transaction
+        cur.execute("DELETE FROM customer_transactions WHERE id = %s", (transaction_id[0],))
+
+        mysql.connection.commit()
+
+    cur.close()
+    return redirect(url_for('home'))
+
+
 # Admin dashboard
 @app.route('/admin')
 def admin_dashboard():

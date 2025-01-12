@@ -106,7 +106,7 @@ CREATE TABLE `customer_transactions` (
 
 LOCK TABLES `customer_transactions` WRITE;
 /*!40000 ALTER TABLE `customer_transactions` DISABLE KEYS */;
-INSERT INTO `customer_transactions` VALUES (1,'Emily Davis','2025-01-07',150.00,1,'21:17:55',NULL),(2,'Frank Moore','2025-01-07',200.00,2,'21:17:55',NULL),(3,'Grace Lee','2025-01-07',250.00,3,'21:17:55',NULL),(4,'Owen Davis ',NULL,200.00,NULL,NULL,NULL),(5,'Owen Davis ',NULL,200.00,NULL,NULL,NULL),(6,'Owen Davis ','2025-01-12',200.00,NULL,'15:20:00',NULL),(7,'Owen Davis ','2025-01-12',300.00,NULL,'16:17:00',NULL),(8,'Owen Davis','2025-01-12',500.00,NULL,'16:51:00',2),(9,'Owen Davis','2025-01-12',550.00,NULL,'16:53:00',1);
+INSERT INTO `customer_transactions` VALUES (1,'Emily Davis','2025-01-07',150.00,1,'21:17:55',NULL),(2,'Frank Moore','2025-01-07',200.00,2,'21:17:55',NULL),(3,'Grace Lee','2025-01-07',250.00,3,'21:17:55',NULL),(4,'Owen Davis ',NULL,200.00,NULL,NULL,NULL),(5,'Owen Davis ',NULL,200.00,NULL,NULL,NULL),(6,'Owen Davis ','2025-01-12',200.00,NULL,'15:20:00',NULL),(7,'Owen Davis ','2025-01-12',300.00,NULL,'16:17:00',NULL),(8,'Owen Davis','2025-01-12',500.00,NULL,'16:51:00',2),(9,'Owen Davis','2025-01-12',550.00,NULL,'16:53:00',3);
 /*!40000 ALTER TABLE `customer_transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,4 +175,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12 16:54:38
+-- Dump completed on 2025-01-12 18:13:36
