@@ -37,7 +37,7 @@ CREATE TABLE `collector_notes` (
   CONSTRAINT `collector_notes_ibfk_1` FOREIGN KEY (`collector_id`) REFERENCES `collectors` (`id`),
   CONSTRAINT `fk_payment_plan` FOREIGN KEY (`payment_plan_id`) REFERENCES `payment_plans` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_transaction` FOREIGN KEY (`transaction_id`) REFERENCES `customer_transactions` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `collector_notes` (
 
 LOCK TABLES `collector_notes` WRITE;
 /*!40000 ALTER TABLE `collector_notes` DISABLE KEYS */;
-INSERT INTO `collector_notes` VALUES (13,'testing new setup',NULL,'2025-01-12 16:38:43','2025-01-12 16:38:43',NULL,2),(14,'',NULL,'2025-01-12 16:52:06','2025-01-12 16:52:06',8,2),(15,'New Setup Working??',NULL,'2025-01-12 16:53:28','2025-01-12 16:53:28',9,1);
+INSERT INTO `collector_notes` VALUES (14,'Updated Price',NULL,'2025-01-12 16:52:06','2025-01-12 18:25:37',8,2),(15,'New Setup Working??',NULL,'2025-01-12 16:53:28','2025-01-12 16:53:28',9,1),(16,'new method',NULL,'2025-01-12 19:01:18','2025-01-12 19:01:18',10,2);
 /*!40000 ALTER TABLE `collector_notes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `customer_transactions` (
   KEY `fk_payment_plan_id` (`payment_plan_id`),
   CONSTRAINT `customer_transactions_ibfk_1` FOREIGN KEY (`collector_id`) REFERENCES `collectors` (`id`),
   CONSTRAINT `fk_payment_plan_id` FOREIGN KEY (`payment_plan_id`) REFERENCES `payment_plans` (`id`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `customer_transactions` (
 
 LOCK TABLES `customer_transactions` WRITE;
 /*!40000 ALTER TABLE `customer_transactions` DISABLE KEYS */;
-INSERT INTO `customer_transactions` VALUES (1,'Emily Davis','2025-01-07',150.00,1,'21:17:55',NULL),(2,'Frank Moore','2025-01-07',200.00,2,'21:17:55',NULL),(3,'Grace Lee','2025-01-07',250.00,3,'21:17:55',NULL),(4,'Owen Davis ',NULL,200.00,NULL,NULL,NULL),(5,'Owen Davis ',NULL,200.00,NULL,NULL,NULL),(6,'Owen Davis ','2025-01-12',200.00,NULL,'15:20:00',NULL),(7,'Owen Davis ','2025-01-12',300.00,NULL,'16:17:00',NULL),(8,'Owen Davis','2025-01-12',500.00,NULL,'16:51:00',2),(9,'Owen Davis','2025-01-12',550.00,NULL,'16:53:00',3);
+INSERT INTO `customer_transactions` VALUES (8,'Owen Davis','2025-01-12',199.99,NULL,'16:51:00',1),(9,'Owen Davis','2025-01-12',299.99,NULL,'16:53:00',2),(10,'Owen Davis','2025-01-12',499.99,NULL,'19:00:00',3);
 /*!40000 ALTER TABLE `customer_transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,8 +122,6 @@ CREATE TABLE `payment_plans` (
   `plan_name` varchar(255) NOT NULL,
   `duration` int NOT NULL,
   `price` decimal(10,2) NOT NULL,
-  `start_date` date NOT NULL,
-  `end_date` date NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -134,7 +132,7 @@ CREATE TABLE `payment_plans` (
 
 LOCK TABLES `payment_plans` WRITE;
 /*!40000 ALTER TABLE `payment_plans` DISABLE KEYS */;
-INSERT INTO `payment_plans` VALUES (1,'Basic Plan',12,199.99,'2025-01-01','2026-01-01'),(2,'Premium Plan',24,299.99,'2025-02-01','2027-02-01'),(3,'Enterprise Plan',36,499.99,'2025-03-01','2028-03-01');
+INSERT INTO `payment_plans` VALUES (1,'Basic Plan',12,199.99),(2,'Standard Plan',24,299.99),(3,'Premium Plan',36,499.99);
 /*!40000 ALTER TABLE `payment_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,4 +173,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12 18:13:36
+-- Dump completed on 2025-01-12 19:23:07

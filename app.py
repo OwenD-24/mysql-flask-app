@@ -196,6 +196,23 @@ def delete_note(note_id):
     cur.close()
     return redirect(url_for('home'))
 
+@app.route('/delete_transaction/<int:transaction_id>', methods=['GET'])
+def delete_transaction(transaction_id):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
+    cur = mysql.connection.cursor()
+
+    # Delete associated notes for this transaction first (if you want to delete them as well)
+    cur.execute("DELETE FROM collector_notes WHERE transaction_id = %s", (transaction_id,))
+
+    # Now delete the transaction
+    cur.execute("DELETE FROM customer_transactions WHERE id = %s", (transaction_id,))
+
+    mysql.connection.commit()
+    cur.close()
+
+    return redirect(url_for('home'))
 
 # Admin dashboard
 @app.route('/admin')
@@ -234,3 +251,4 @@ def register():
 
 if __name__ == "__main__":
     app.run(debug=True)
+

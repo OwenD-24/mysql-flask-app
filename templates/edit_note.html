@@ -4,6 +4,7 @@
 
 {% block content %}
 <h1>Edit Collector Note</h1>
+<!-- Form for editing an existing note -->
 <form method="POST">
     <label for="note">Note:</label>
     <textarea name="note" required>{{ note_data[1] }}</textarea>
@@ -23,6 +24,7 @@
 
     <label for="payment_plan_id">Payment Plan:</label>
     <select name="payment_plan_id" required>
+    <!-- Loop through available payment plans and set selected option -->
     {% for plan in payment_plans %}
         <option value="{{ plan[0] }}" {% if plan[0] == note_data[7] %}selected{% endif %}>{{ plan[1] }}</option>
     {% endfor %}
@@ -31,4 +33,5 @@
     <button type="submit">Update Note and Transaction</button>
 </form>
 {% endblock %}
+
 

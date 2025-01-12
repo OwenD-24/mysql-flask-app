@@ -178,3 +178,34 @@ form input, form textarea, form select {
         opacity: 1;
     }
 }
+
+/* Styling for the Admin Dashboard */
+.admin-dashboard {
+    margin-top: 30px;
+}
+
+.admin-dashboard h2 {
+    text-align: center;
+    color: #333;
+}
+
+.admin-dashboard table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.admin-dashboard th, .admin-dashboard td {
+    text-align: center;
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-dashboard th {
+    background-color: #0056b3;
+    color: white;
+}
+
+.admin-dashboard tr:hover {
+    background-color: #f5f5f5;
+}

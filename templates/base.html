@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% block title %}My App{% endblock %}</title>
+  <!-- Link to external CSS for styling -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
   {% if session.get('logged_in') %}
+  <!-- Display navigation bar if user is logged in -->
   <header>
     <nav>
       <ul>
@@ -18,14 +20,18 @@
   {% endif %}
 
   <main class="content">
+    <!-- Content block that will be replaced in child templates -->
     {% block content %}{% endblock %}
   </main>
 
   <footer>
+    <!-- Footer with copyright information -->
     <p>&copy; {{ current_year }} My App. All rights reserved.</p>
   </footer>
+  <!-- Link to external JavaScript file -->
   <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
 </body>
 </html>
+
 
 

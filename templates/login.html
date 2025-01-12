@@ -5,6 +5,7 @@
 {% block content %}
 <div class="login-container">
   <h1>Login</h1>
+  <!-- Login form -->
   <form method="POST" action="{{ url_for('login') }}">
     <div class="form-group">
       <label for="email">Email</label>
@@ -16,11 +17,13 @@
     </div>
     <button type="submit" class="login-btn">Login</button>
   </form>
+  <!-- Link to registration page -->
   <div class="login-links">
     <p>Don't have an account? <a href="{{ url_for('register') }}">Sign Up</a></p>
   </div>
 </div>
 {% endblock %}
+
 
 
 
