@@ -18,7 +18,7 @@ app.secret_key = os.getenv('SECRET_KEY')  # Set the secret key securely from .en
 app.config['MYSQL_HOST'] = '127.0.0.1'
 app.config['MYSQL_PORT'] = 3306
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'mypassword'  # Ensure this is the correct password for your MySQL
+app.config['MYSQL_PASSWORD'] = 'MAINPassword25'  # Ensure this is the correct password for your MySQL
 app.config['MYSQL_DB'] = 'collections'
 
 mysql = MySQL(app)
@@ -40,13 +40,14 @@ def login():
             session['user_id'] = user[0]
             session['user_role'] = user[2]
 
-            if user[2] == 'admin':  # Redirect admin users to admin dashboard
+            if user[2] == 'admin':
                 return redirect(url_for('admin_dashboard'))
             return redirect(url_for('home'))  # Redirect regular users to the homepage
 
         return "Invalid credentials. Please try again.", 401
 
     return render_template('login.html')
+
 
 @app.route('/logout')
 def logout():
